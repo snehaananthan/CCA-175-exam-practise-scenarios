@@ -1,0 +1,7 @@
+1,kajal,78
+2,lipbalm,34
+3,lipstick,90
+2,eyeliner,56
+1,earring,50
+3,mascara,100
+1,ring,200

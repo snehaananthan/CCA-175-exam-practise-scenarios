@@ -1,0 +1,8 @@
+Sales,Lead,AP,4000
+Sales,Associate,LA,3000
+Sales,Lead,TN,4000
+Sales,Manager,BR,2000
+Sales,Lead,AP,3000
+Sales,Associate,MN,2000
+Sales,Associate,MN,2000
+Sales,Lead,TN,8000
