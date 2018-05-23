@@ -1,0 +1,103 @@
+﻿
+1.	Problem Statement
+Problem Scenario 18 : You have been given following mysql database details as well as other info. 
+host=ms.itversity.com
+user=retail_user 
+password=itversity 
+database=retail_export
+
+Now accomplish following activities. 
+1. Create mysql table as below. 
+CREATE TABLE IF NOT EXISTS retail_export.departments_hive_<your_username>_export(id int, department_name varchar(45), avg_salary int); 
+show tables; 
+2. Now export data from hive table departments_hive to mysql table departments_hive_<your_username>_export. While exporting, please note following. 
+--wherever there is a empty string it should be loaded as a null value in mysql. 
+--wherever there is -999 value for int field, it should be created as null value.
+
+2.	Problem Statement
+Problem Scenario 19 : You have been given following mysql database details as well as other info. 
+host=nn01.itversity.com
+user=retail_user 
+password=itversity 
+database=retail_db 
+
+Now accomplish following activities. 
+1. Import departments table from mysql to hdfs as textfile in  /user/<your_username>/mocks/mock8/problem2/departments_text directory using gzip compression. 
+2. Import departments table from mysql to hdfs as sequence file in /user/<your_username>/mocks/mock8/problem2/departments_ sequence directory using gzip compression. 
+3. Import departments table from mysql to hdfs as avro file in /user/<your_username>/mocks/mock8/problem2/departments_avro directory using snappy compression. 
+4. Import departments table from mysql to hdfs as parquet file in /user/<your_username>/mocks/mock8/problem2/departments _ parquet directory using snappy compression. 
+
+3.	Problem Statement
+Problem Scenario 20 : You have been given MySQL DB with following details. 
+host=nn01.itversity.com
+user=retail_dba 
+password=itversity 
+database=retail_db 
+
+Please accomplish following activities. 
+1.Write a Sqoop Job which will import "retail_db.categories" table to hdfs, in a directory name /user/<your_username>/mocks/mock8/problem3/categories_target_job 
+
+4.	Problem Statement
+Problem Scenario 87 : You have been given three Files,
+/user/<your_username>/mocks/data/products.csv 
+productId,productCode,name,quantity,price,supplierId
+/user/<your_username>/mocks/data/suppliers.csv
+supplierId,name,phone
+
+Select product name, its price , its supplier name where product price is less than 0.6. Save data as avro using snappy compression in /user/<your_username>/mocks/mock8/problem4
+
+Avro dependency details: groupId -> com.databricks, artifactId -> spark-avro_2.10, version -> 2.0.1
+
+5.	Problem Statement
+Problem Scenario 88 : You have been given below three Files
+/user/<your_username>/mocks/data/products.csv 
+productId,productCode,name,quantity,price,supplierId
+
+/user/<your_username>/mocks/data/suppliers.csv
+supplierId,name,phone
+
+Now accomplish all the queries given in solution. 
+1. It is possible that same product can be supplied by multiple supplier. Now find each product , its price according to each supplier. 
+2. Find all the suppliers’ name, who are supplying 'Pencil 3B' 
+3. Find all the products which are supplied by ABC Traders.
+Save data in tab-delimited text file in /user/<your_username>/mocks/mock8/problem5
+
+6.	Problem Statement
+Problem Scenario 89 : You have been given below patient data in csv format. 
+
+/user/<your_username>/mocks/data/patients.csv
+patientId,name,dateOfBirth,lastVisitDate
+
+Accomplish following activities. 
+1. Find all the patients whose lastVisitDate between current time and '2012-09-15' 
+2. Find all the patients who born in 2011 
+3. Find all the patients age 
+4. List patients whose last visited more than 60 days ago 
+5. Select patients 18 years old or younger
+Save data in /user/<your_username>/mocks/mock8/problem6 as csv files.
+
+7.	Save the /user/<your_username>/mocks/data/patients.csv data in avro format in /user/<your_username>/mocks/mock8/problem7/data
+patientId,name,dateOfBirth,lastVisitDate
+
+Avro dependency details: groupId -> com.databricks, artifactId -> spark-avro_2.10, version -> 2.0.1
+
+8.	Problem Statement
+Problem Scenario 90 : You have been given below two files 
+/user/<your_username>/mocks/data/course.txt 
+id,course
+/user/<your_username>/mocks/data/fee.txt
+id,fee
+
+Accomplish the following activities. 
+1. Select all the courses and their fees , whether fee is listed or not. 
+2. Select all the available fees and respective course. If course does not exists still list the fee 
+3. Select all the courses and their fees. However, ignore records having fee as null.
+Save each result in space delimited text file using gzip compression to /user/<your_username>/mocks/mock8/problem8
+
+9.	Problem Statement
+Problem Scenario 91: You have been given data in json format as below. 
+/user/<your_username>/mocks/data/employee.json
+
+Do the following activity 
+Sort data by first_name ascending and save back in json format in 
+/user/<your_username>/mocks/mock8/problem9

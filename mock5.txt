@@ -1,0 +1,101 @@
+﻿
+1.	Problem Statement
+Problem Scenario 9 : You have been given following mysql database details as well as other info. 
+host=nn01.itversity.com
+user=retail_dba 
+password=itversity 
+database=retail_db 
+
+Please accomplish following. 
+1. Import departments table in a directory /user/<your_username>/mocks/mock5/problem1 
+2. Again import departments table same directory (However, directory already exist hence it should not override, but append the results) 
+3. Also make sure your results fields are terminated by 'l' and lines terminated by '\n'.
+
+2.	Problem Statement
+Problem Scenario 10 : You have been given following mysql database details as well as other info. 
+host=nn01.itversity.com
+user=retail_dba 
+password=itversity  
+database=retail_db
+
+Please accomplish following. 
+Import departments table as a metastore table in <your_username>_retail_db_txt database.departments_<your_username>. Do the import onto a non-existing table and achieve the import using sqoop.
+
+3.	Problem Statement
+Problem Scenario 11 :  You have been given following mysql database details as well as other info.
+host=nn01.itversity.com
+user=retail_user 
+password=itversity 
+database=retail_db 
+
+Please accomplish following. 
+1. Import departments_<your_username> table in a directory called /user/<your_username>/mocks/mock5/problem3
+2. Once import is done, please insert following 5 records in departments_<your_username> mysql table. 
+10, physics
+11, Chemistry
+12, Maths
+13, Science 
+14, Engineering 
+3. Now import only new inserted records and append to existing directory , which has been created in first step.
+
+4.	Problem Statement
+Problem Scenario 44 : You have been given 4 files 
+/user/<your_username>/mocks/data/wordfile1 .txt
+/user/<your_username>/mocks/data/wordfile2.txt 
+/user/<your_username>/mocks/data/wordfile3.txt
+/user/<your_username>/mocks/data/wordfile4.txt
+
+Write a Spark program, which will give you the highest occurring words in each file. With their file name and highest occurring words as tab-delimited text file in 
+/user/<your_username>/mocks/mock5/problem4
+
+5.	Problem Statement
+Problem Scenario 45 : You have been given 2 files 
+
+/user/<your_username>/mocks/data/technology.txt 
+first,last,technology
+
+/user/<your_username>/mocks/data/salary.txt 
+first,last,salary
+
+Write a Spark program, which will join the data based on first and last name and save the joined results in following format. 
+first last | technology | salary
+Save as text file using snappy compression to /user/<your_username>/mocks/mock5/problem5
+
+6.	Problem Statement
+Problem Scenario 46 : 
+Input file provided: /user/<your_username>/mocks/data/workdone.txt 
+name,sex,salary
+Compute the sum of cost for each combination of name and sex.
+Save data in parquet format snappy compressed in /user/<your_username>/mocks/mock5/problem6
+
+7.	Problem Statement
+Given file, /user/<your_username>/mocks/data/people.txt
+name,age,gender
+
+calculate the number of males & females and their cumulative ages of respective gender. Write data tab-delimited as text file gzip compressed in /user/<your_username>/mocks/mock5/problem7
+
+8.	Problem Statement
+Given list of strings ("dog", "tiger", "lion", "cat", "panther", "eagle")
+Compute length of string for each and save in the format
+string length
+dog 3
+……….
+Save data in orc format in /user/<your_username>/mocks/mock5/problem8
+
+9.	Problem Statement
+Problem Scenario 69 : Given file,
+/user/<your_username>/mocks/data/Content.txt 
+Filter out the words which are less than 4 characters and save as 
+columns – 
+
+word length
+sed 3
+…….
+Save as avro data using snappy compression in /user/<your_username>/mocks/mock5/problem9
+Avro dependency details: groupId -> com.databricks, artifactId -> spark-avro_2.10, version -> 2.0.1
+
+10.	Problem Statement
+Given file, 
+/user/<your_username>/mocks/data/Content.txt
+The first word in the sentence and the sentence should form a tuple for every sentence in the text file.
+Save as sequence file using gzip compression to /user/<your_username>/mocks/mock5/problem10

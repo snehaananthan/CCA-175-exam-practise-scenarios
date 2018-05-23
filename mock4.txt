@@ -1,0 +1,88 @@
+﻿
+1.	Problem Statement
+Problem Scenario 7 : You have been given following mysql database details as well as other info. 
+host=nn01.itversity.com
+user=retail_user 
+password=itversity  ¬¬¬¬¬
+database=retail_db 
+
+Please accomplish following. 
+1. Import department tables using your custom boundary query, which import departments between 1 to 25. 
+2. Also make sure each tables tile is partitioned in 2 files.
+3. Also make sure you have imported only two columns from table, which are department_id,department_name 
+4. Save to HDFS: /user/<your_username>/mocks/mock4/problem1
+
+2.	Problem Statement
+Using sqoop do the following. Read the entire steps before you create the sqoop job.
+	create a hive table in database named snehaananthan_retail_db_txt using below command
+	create table products_hive  (product_id int, product_category_id int, product_name string, product_description string, product_price float, product_imaage string,product_grade int,  product_sentiment string);
+	create a sqoop job Import retail_export.products_<your_username> table as hive import to database named <your_username>_retail_db_txt and table products_hive.
+	insert three more records to retail_export.products_<your_username> from mysql
+	run the sqoop job again so that only newly added records can be pulled from mysql
+
+3.	Problem Statement
+Using sqoop do the following. .
+	insert 2 more records into products_hive table using hive.
+	create table in retail_export database mysql using below command
+	create table products_external_<your_user_name>  (product_id int(11) primary Key, product_grade int(11), product_category_id int(11), product_name varchar(100), product_description varchar(100), product_price float, product_impage varchar(500), product_sentiment varchar(100));
+	export data from products_hive (hive) table to (mysql) products_external_<your_user_name> table.
+	insert 2 more records to Products_hive table from hive
+	export data from products_hive table to products_external table.
+	Validate to make sure the records have not be duplicated in mysql table
+
+4.	Problem Statement
+Problem Scenario 33 : You have given a files as below. 
+/user/<your_username>/mocks/data/EmployeeName.csv
+/user/<your_username>/mocks/data/EmployeeSalary.csv
+
+Now write a Spark code which will load these two files from hdfs and join the same, and produce the (name,salary) values. 
+Sort the records by salary and then by name in natural order and save as sequence file gzip compressed in /user/<your_username>/mocks/mock4/problem4
+
+5.	Problem Statement
+Problem Scenario 35 : You have been given a file named 
+/user/<your_username>/mocks/data /EmployeeName.csv
+
+Load this file from hdfs and sort it by name. 
+Save it back as -
+name id 
+in /user/<your_username>/mocks/mock4/problem5 directory as text file. 
+However, make sure while saving it should be able to write in a single file.
+
+6.	Problem Statement
+Problem Scenario 36 : You have been given a file named /user/<your_username>/mocks/data/data.csv  
+(type, name)
+Load this file from hdfs and save it back as (id, (all names of same type separated by tab-space)) in /user/<your_username>/mocks/mock4/problem6 directory as sequence file.
+However, make sure while saving it should be able to write in a single file.
+
+7.	Problem Statement
+Problem Scenario 37 : 
+Avro dependency details: groupId -> com.databricks, artifactId -> spark-avro_2.10, version -> 2.0.1
+Products feedback using a web based form /user/<your_username>/mocks/data/feedback.txt
+Sort data by ascending order of date in format:
+name, date, rating
+and save as avro file uncompressed under /user/<your_username>/mocks/mock4/problem7
+
+8.	Problem Statement
+Problem Scenario 39 : You have been given two files 
+/user/<your_username>/mocks/data/customer.txt – id,name,age
+/user/<your_username>/mocks/data/customer_orders.txt – id,item,cost
+
+Calculate the entire revenue for every customer and save name and revenue in a json file under /user/<your_username>/mocks/mock4/problem8
+
+9.	Problem Statement
+Problem Scenario 40 : You have been given sample data as below in a file called 
+/user/<your_username>/mocks/data/veteran.txt
+
+id,year,cadre,subdivision,country,state,honors,badges,age
+
+Calculate the total badges procured by age groups 20-29, 30-39, 40-59. 
+Also consider blank values for badges as 0. 
+Save output: 
+age_group, badges 
+in parquet format snappy compressed to /user/<your_username>/mocks/mock4/problem9
+
+10.	 Problem Statement 
+Problem Scenario 42 : You have been given a file 
+/user/<your_username>/mocks/data/sales.txt 
+Dept,Desgn,State,Salary
+And want to produce the output as a csv with group by Department,Designation,State with additional columns with costToCompany and totalEmployeeCount and save to /user/<your_username>/mocks/mock4/problem10

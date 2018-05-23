@@ -1,0 +1,112 @@
+﻿
+1.	Problem Statement
+host=nn01.itversity.com
+user=retail_dba 
+password=itversity 
+database=retail_db
+•	All tables data present in /user/<your_username>/warehouse/retail_stage.db
+•	Create a metastore table that should point to the orders data present in the above HDFS location. Name the table orders_sqoop.
+•	Get all orders belonging to a certain day. This day is the earliest order_date when the most orders were placed. Select data from orders_sqoop. Save this data in avro format to a metastore table mock3_problem1 in <your_username>_retail_db_txt.
+•	Export the metastore table mock3_problem1 data to an sql table mock3_problem1_<your_username> in retail_export database.
+
+2.	Problem Statement
+host=ms.itversity.com
+user=retail_user 
+password=itversity 
+database=retail_export
+Using sqoop do the following. Read the entire steps before you create the sqoop job.
+•	create a sqoop job Import products_<your_username> table as text file to directory /user/<your_username>/mocks/mock3/problem2/products-incremental. Import all the records.
+•	insert three more records to products_<your_username> from mysql
+•	run the sqoop job again so that only newly added records can be pulled from mysql
+•	Validate to make sure the records have not be duplicated in HDFS
+3.	Problem Statement
+host=nn01.itversity.com
+user=retail_dba 
+password=itversity 
+database=retail_db 
+table=categories 
+
+Please accomplish following activities. 
+Import Single table categories(Subset data) to hive managed table categories_subset, where category_id between 1 and 22 
+
+4.	Problem Statement
+Problem Scenario 30 : You have been given three csv files in hdfs as below. 
+/user/<your_username>/mocks/data/EmployeeName.csv with the field (id, name) 
+/user/<your_username>/mocks/data/EmployeeManager.csv (id, managerName) 
+/user/<your_username>/mocks/data/EmployeeSalary.csv (id, Salary) 
+
+using Spark and its API you have to generate a joined output as below and save as a text file (Separated by comma) for final distribution and output must be sorted by id.
+id - name,salary,managerName 
+Save output to /user/<your_username>/mocks/mock3/problem4
+
+5.	Problem Statement
+Problem Scenario 31 : You have given following two files 
+1. /user/<your_username>/mocks/data/Content.txt : Contain a huge text file containing space separated words. 
+2. /user/<your_username>/mocks/data/Remove.txt : Ignore/filter all the words given in this file (Comma Separated). 
+Write a Spark program which reads the Content.txt file and load as an RDD, remove all the words from a broadcast variables (which is loaded as an RDD of words from remove.txt). and count the occurrence of the each word in the filtered dataset and save it as a text file in format – 
+word count 
+usemi 4
+uiopr 5
+tyui 9
+
+in HDFS: /user/<your_username>/mocks/mock3/problem5
+
+6.	Problem Statement
+•	Data is available in HDFS file system under /public/crime/csv
+•	You can check properties of files using hadoop fs -ls -h /public/crime/csv
+•	Structure of data (ID,Case Number,Date,Block,IUCR,Primary Type,Description,Location Description,Arrest,Domestic,Beat,District,Ward,Community Area,FBI Code,X Coordinate,Y Coordinate,Year,Updated On,Latitude,Longitude,Location)
+•	File format - text file
+•	Delimiter - “,”
+•	Get monthly count of primary crime type, sorted by month in ascending and number of crimes per type in descending order
+•	Store the result in HDFS path /user/<YOUR_USER_ID>/mocks/mock3/problem6
+•	Output File Format: TEXT
+•	Output Columns: Month in YYYYMM format, crime count, crime type
+•	Output Delimiter: \t (tab delimited)
+•	Output Compression: gzip
+
+7.	Problem Statement
+•	Data is available in HDFS file system under /public/crime/csv
+•	Structure of data (ID,Case Number,Date,Block,IUCR,Primary Type,Description,Location Description,Arrest,Domestic,Beat,District,Ward,Community Area,FBI Code,X Coordinate,Y Coordinate,Year,Updated On,Latitude,Longitude,Location)
+File format - text file
+•	Delimiter - “,” (use regex while splitting split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1), as there are some fields with comma and enclosed using double quotes.
+•	Get top 3 crime types based on number of incidents in RESIDENCE area using “Location Description”
+•	Store the result in HDFS path /user/<YOUR_USER_ID>/mocks/mock3/problem7
+•	Output Fields: Crime Type, Number of Incidents
+•	Output File Format: JSON
+•	Output Delimiter: N/A
+•	Output Compression: No
+
+8.	Problem Statement
+•	Data is available in local file system under /user/<your_username>/data/nyse (ls -ltr /data/nyse)
+•	Fields (stockticker:string, transactiondate:string, openprice:float, highprice:float, lowprice:float, closeprice:float, volume:bigint)
+•	Convert file format to parquet
+•	Save it /user/<YOUR_USER_ID>/mocks/mock3/problem8
+
+9.	Problem Statement
+•	Tables should be in hive database - <YOUR_USER_ID>_retail_db_txt
+o	orders 
+order_id, order_date, order_customer_id, order_status
+o	order_items 
+order_item_id, order_item_order_id, order_item_product_id, order_item_quantity, order_item_subtotal, order_item_product_price
+o	customers 
+customer_id, customer_fname, customer_lname, customer_email, customer_password, customer_street, customer_city, customer_state, customer_zipcode
+•	Get details of top 5 customers by revenue for each month
+•	We need to get all the details of the customer along with month and revenue per month
+•	Data need to be sorted by month in ascending order and revenue per month in descending order
+•	Create table top5_customers_per_month in <YOUR_USER_ID>_retail_db_txt
+•	Insert the output into the newly created table.
+
+10.	 Problem Statement 
+Problem Scenario 32 : You have given three files as below. 
+/user/<your_username>/mocks/data/file1 .txt 
+/user/<your_username>/mocks/data/file2.txt 
+/user/<your_username>/mocks/data/file3.txt 
+
+Now write a Spark code in scala which will load all these three files from hdfs and do the word count by removing the following words. 
+And result should be sorted by word count in reverse order. 
+Filter the words (at imperdiet dui accumsan sit amet nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet non)
+Also please make sure you load all three files as a Single RDD (All three files must be loaded using single API call). 
+You have also been given following codec
+Output format: word,count
+import org.apache.hadoop.io.compress.GzipCodec 
+Please use above codec to compress file, while saving in hdfs: /user/<your_username>/mocks/mock3/problem10

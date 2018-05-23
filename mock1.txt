@@ -1,0 +1,142 @@
+﻿1.	Problem Statement
+•	List databases, list tables and validate that you can connect to database using Sqoop with JDBC URL. As part of validation you should query from one of the tables in MySQL
+•	Host: nn01.itversity.com
+•	Retail Database Names: retail_db, retail_import, retail_export
+•	Username to access Retail databases: retail_dba (itversity)
+
+•	NYSE Database: nyse
+•	Username to access nyse database: nyse_ro
+•	Table Name: stocks_eod
+
+•	Importing retail_db to HDFS: /user/<your_username>/mocks/mock1/problem1/retail_db
+•	Import all tables
+•	file format - avrodata-file
+
+•	Importing retail_db to Hive : <your_username>_retail_db_txt database
+•	Import all tables
+•	File format - text file
+•	Delimiter - |
+
+•	Import nyse.stocks_eod to HDFS: /user/<your_username>/data/nyse_stocks
+•	Try to use compression - snappy codec
+•	Use 8 parallel threads
+
+
+2.	Problem Statement
+Description
+•	Use NYSE data
+•	Perform import into HDFS, run given query, perform sqoop export back to nyse_export
+Problem Statement
+•	Import nyse.stocks_eod (preferably hive import into your own database <your_username>_retail_db_txt)
+•	Run this CTAS query which will store data back to new hive table
+create table stocks_revenue_monthly as
+select stockticker, substr(tradedate, 1, 7) trademonth,
+sum(volume) monthly_volume
+from stocks_eod
+group by stockticker, substr(tradedate, 1, 7);
+•	Create table in mysql - nyse_export with some unique name
+•	Sqoop export to copy data back to mysql table created in last step (source - hive table stocks_revenue_monthly)
+
+
+3.	Problem Statement
+•	In 4 way contest BJP won almost 90% of seats in general elections
+•	If it was 3 way contest as UP state elections 2017, then how many seats BJP would have won, how many seats SP+INC should have won.
+•	HDFS path for data set – 
+/user/<your_username>/mocks/data/electionresults.txt
+•	Data has details about all Lok Sabha constituencies in India, we are only interested in UP
+•	There are multiple records for each constituency, each record have details about state, constituency, candidate name, party, number of votes he got
+•	For data issue, please use e.split('\t')[0] != ''
+•	Get the number of seats of BJP, BSP and cumulative votes of INC+SP¬¬
+•	Final outcome: partyname, number of seats for BJP, BSP and INC+SP assuming alliance
+•	Save output as json to /user/<your_username>/mocks/mock1/problem3
+
+
+4.	Problem Statement
+•	All tables data in hdfs:   /user/<your_username>/data/retail_db 
+categories: 
+category_id | category_department_id | category_name 
+
+order_items: 
+order_item_id | order_item_order_id | order_item_product_id | order_item_quantity | order_item_subtotal | order_item_product_price
+
+departments:
+department_id | department_name
+
+products:
+product_id | product_category_id | product_name | product_description | product_price | product_image
+Please use filter(lambda p: p.split(',')[4] != '') for products to filter inconsistent data.
+
+•	Get rank of each category by revenue with in each department generated from all the transactions
+o	Display the results by deparment_name and rank in ascending order 
+o	Output columns – department_name, category_id, revenue, rank
+•	Get percentage of each category by revenue with in each department
+o	Display the results by department_name and percentage in descending order
+o	Output columns – department_name, category_id, revenue, percentage
+•	Save output in orc format to /user/<your_username>/mocks/mock1/problem4
+
+
+5.	Problem Statement
+•	All tables data in hdfs:   /user/<your_username>/data/retail_db 
+categories: 
+category_id | category_department_id | category_name 
+
+order_items: 
+order_item_id | order_item_order_id | order_item_product_id | order_item_quantity | order_item_subtotal | order_item_product_price
+
+departments:
+department_id | department_name
+
+products:
+product_id | product_category_id | product_name | product_description | product_price | product_image
+Please use filter(lambda p: p.split(',')[4] != '') for products to filter inconsistent data.
+orders:
+order_id | order_date | order_customer_id | order_status
+
+•	Get all the completed or closed orders and then compute total revenue for each day for each department
+•	Print order_date, department_name and order_revenue
+•	Save output in text format comma separated to /user/<your_username>/mocks/mock1/problem5
+
+6.	Problem Statement
+•	Use NYSE end of day stock data in HDFS: /user/<your_username>/data/nyse_stocks
+•	Input dataset: stockticker | tradedate | openprice | highprice | lowprice | closeprice | volume
+•	Output format – Month, Stock Name, Volume (all 3 fields should be delimited by \t)
+•	Get top 8 traded stocks by volume each month from NYSE data 
+•	Save output to /user/<your_username>/mocks/mock1/problem6
+
+7.	Problem Statement
+•	Data in local:     /data/hr_db/employees
+•	Columns: 
+employee_id | first_name | last_name | email | phone_number | hire_date | job_id | salary | commission_pct | manager_id | department_id
+•	Let us get commission earned by each and every employee
+•	For each and every employee who have commission_pct set compute commission earned in dollars (by multiplying salary with commission_pct)
+•	Print employee name, salary and commission earned (space-delimited)
+•	If commission_pct is null in database, print “N/E” for commission earned
+•	Save output as text to /user/<your_username>/mocks/mock1/problem7
+
+8.	Problem Statement
+•	Data is available in HDFS /public/randomtextwriter
+•	Get word count for the input data using space as delimiter (for each word, we need to get how many types it is repeated in the entire input data set)
+•	Number of executors should be 10
+•	Executor memory should be 3 GB
+•	Executor cores should be 20 in total (2 per executor)
+•	Number of output files should be 8
+•	Avro dependency details: groupId -> com.databricks, artifactId -> spark-avro_2.10, version -> 2.0.1
+•	Target Directory: /user/<YOUR_USER_ID>/mocks/mock1/problem8
+•	Target File Format: Avro
+•	Target fields: word, count
+•	Compression: N/A or default
+
+9.	 Problem Statement 
+•	Data is available in HDFS file system /user/<your_username>/data/retail_db
+orders:
+order_id | order_date | order_customer_id | order_status
+
+customers:
+customer_id | customer_fname | customer_lname | customer_email | customer_password | customer_street | customer_city | customer_state | customer_zipcode
+
+•	Get the customer_lname, customer_fname who have not placed any orders, sorted by customer_lname and then customer_fname
+•	Number of files - 1
+•	Target Directory: /user/<YOUR_USER_ID>/mocks/mock1/problem9
+•	Target File Format: TEXT
+•	Target Delimiter: comma (“, ”)
+•	Compression: N/A

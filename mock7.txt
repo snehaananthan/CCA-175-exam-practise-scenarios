@@ -1,0 +1,113 @@
+﻿
+1.	Problem Statement
+15. Problem Scenario 15 : You have been given following mysql database details as well as other info. 
+host=ms.itversity.com
+user=retail_user 
+password=itversity 
+database=retail_export
+
+Please accomplish following activities. 
+1. In mysql departments_<your_username> 
+2. Now there is a downstream system which will process dumps of this file. However, system is designed the way that it can process only files if fields are enclosed in (‘) single quotes and separator of the field should be (~) and line needs to be terminated by : (colon).
+3. It data itself conatins the " (double-quote) then it should be escaped by \.
+4. Please import the departments table in a directory /user/<your_username>/mocks/mock7/departments_enclosedby and file should be able to be processed by downstream system. 
+
+2.	Problem Statement
+Problem Scenario 16 : You have been given following mysql database details as well as other info. 
+host=nn01.itversity.com
+user=retail_user 
+password=itversity 
+database=retail_db
+
+Please accomplish below assignment. 
+
+1. Create a table in hive as below. 
+create table <your_username>_retail_db_txt.departments_hive(department_id int, department_name string); 
+2. Now import data from mysql table departments to this hive table. Please make sure that data should be visible using below hive command. 
+select * from departments_hive 
+
+3.	Problem Statement
+Problem Scenario 17 : You have been given following mysql database details as well as other info. 
+host=ms.itversity.com
+user=retail_user 
+password=itversity 
+database=retail_export
+
+Please accomplish below assignment. 
+1. Create a table in hive as below. 
+create table <your_username>_retail_db_txt.departments_sal(department_id int, department_name string, avg_salary int); 
+2. In mysql copy all the data from retail_db.departments table to retail_export.departments_hive_<your_username> using 
+insert into retail_export.departments_hive_<your_username> select a.*, null from departments a; 
+
+Also insert following records as below 
+insert into departments_hive_<your_username> values(777, "Not known",1000); 
+insert into departments_hive_<your_username> values(8888, null,1000); 
+insert into departments_hive_<your_username> values(666, null,1100); 
+
+3. Now import data from mysql table departments_hive_<your_username> to this hive table <your_username>_retail_db_txt.departments_sal. Please make sure that data should be visible using below hive command.
+Also, while importing if null value found for department_name column replace it with “” (empty string) and for id and salary columns with -999 
+select * from departments_hive; 
+
+4.	Problem Statement
+Problem Scenario 81 : 
+You have been given following /user/<your_username>/mocks/data/products.csv file 
+
+productId,productCode,name,quantity,price,supplierId
+
+Now accomplish following activities. 
+1. Create a Hive ORC table <your_username>_retail_db_txt.products_orc
+ 
+2. Load this data in above Hive table. 
+3. Create a Hive parquet table <your_username>_retail_db_txt.products_parquet and load data in it.
+
+5.	Problem Statement
+Problem Scenario 82 : You have been given table in Hive <your_username>_retail_db_txt.products_parquet 
+
+Accomplish following activities. 
+1. Select all the products name and quantity having quantity <=2000 
+2. Select name and price of the product having code as 'PEN' 
+3. Select all the products, which name starts with ‘pencil‘
+
+Avro dependency details: groupId -> com.databricks, artifactId -> spark-avro_2.10, version -> 2.0.1
+Save each result as avro under /user/<your_username>/mocks/mock7/problem5
+
+6.	Problem Statement
+Problem Scenario 83 : In Continuation of previous question, please accomplish following activities. 
+1. Select all the records with quantity >= 5000 and name starts with 'Pen' 
+2. Select all the records with quantity >= 5000, price is less than 1.24 and name starts with 'Pen' 
+3. Select all the records which does not have quantity >= 5000 and name does not starts with 'Pen' 
+4. Select all the products which name is 'pen Red', 'pen Black' 
+5. Select all the products which has price BETWEEN 1.0 AND 2.0 AND quantity BETWEEN 1000 AND 2000.
+
+Save each result as json using snappy compression under /user/<your_username>/mocks/mock7/problem6
+
+7.	Problem Statement
+In Continuation of previous question, please accomplish following activities. 
+1. Select all the products which has product code as null 
+2. Select all the products, whose name starts with Pen and results should be order by Price descending order. 
+3. Select all the products, whose name starts with Pen and results should be order by Price descending order and quantity ascending order. 
+4. Select top 2 products by price
+
+Save each result as text file comma separated, gzip compressed under /user/<your_username>/mocks/mock7/problem7
+
+8.	Problem Statement
+Problem Scenario 85 : In Continuation of previous question, please accomplish following activities. 
+
+1. Select code and name both separated by ' - ' and header name should be ‘product_description'. 
+2. Select all distinct prices. 
+3. Select distinct price and name combination. 
+4. Select all product data sorted by both code in asc and productlD in desc. 
+5. count number of products. 
+6. Count number of products for each code.
+
+Save each result as orc to /user/<your_username>/mocks/mock7/problem8
+
+9.	Problem Statement
+Problem Scenario 86 : In Continuation of previous question, please accomplish following activities: 
+1. Select Maximum, minimum, average , Standard Deviation, and total quantity. 
+2. Select minimum and maximum price for each product code. 
+3. Select Maximum, minimum, average , Standard Deviation, and total quantity for each product code, hwoever make sure Average and Standard deviation will have maximum two decimal values. 
+4. Select all the product code and average price only where product count is more than or equal to 3. 
+
+Save each result as text file space- delimited snappy compressed to /user/<your_username>/mocks/mock7/problem9
+

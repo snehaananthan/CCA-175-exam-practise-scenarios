@@ -1,0 +1,122 @@
+﻿
+1.	Problem Statement
+Problem Scenario 12 : You have been given following mysql database details as well as other info. 
+host=ms.itversity.com
+user=retail_user 
+password=itversity 
+database=retail_ export 
+
+Please accomplish following. 
+1. Import data as text from departments_ts_<your_username> table to hdfs location /user/<your_username>/mocks/mock6/problem1
+2. Insert following 5 records for columns department_id, department_name in departments_ts_<your_username> table. 
+110, "Civil"
+111, "Mechanical"
+112, "Automobile"
+113, "Pharma"
+114, "social engineering"
+3. Now do the incremental import based on created_date column. 
+
+2.	Problem Statement
+Problem Scenario 13 : You have been given following mysql database details as well as other info. 
+User=retail_user 
+password=itversity 
+database=retail_ db
+
+Please accomplish following. 
+1. Create a table in retail_export with following definition. 
+CREATE table departments_export_<your_username> (department_id int(11), department_name varchar(45), created_date TIMESTAMP DEFAULT NOW()); 
+2. Now export the data from following directory into departments_export_<your_username> table. 
+/user/<your_username>/mocks/mock6/problem1
+
+3.	Problem Statement
+Problem Scenario 14 : You have been given following mysql database details as well as other info. 
+User=retail_user 
+password=itversity 
+database=retail_ db
+
+Please accomplish following activities. 
+1. Export data from hdfs /user/<your_username>/mocks/data/updated_departments.csv to mysql retail_export.departments_<your_username> table. 
+During upload make sure existing department will not be updated and new departments needs to be inserted.
+
+2. Now update updated_departments.csv file with below content. 
+4,Fitness 
+5,Footwear 
+6,Fathematics 
+7,Science 
+8,Engineering 
+2000,Management 
+3000,Quality Check 
+
+3. Now upload this file to hdfs.
+4. Now export this data from hdfs to mysql retail_export.departments_<your_username> table. During upload make sure existing department will just updated and no new departments needs to be inserted.
+
+4.	Problem Statement
+Problem Scenario 73 : You have been given data in, 
+/user/<your_username>/mocks/data/employee.json
+Do the following activity 
+1. Register this data as a temp table in Spark using Python. 
+2. Write select query and print this data. 
+3. Now save back this selected data in gzip compressed json format to: /user/<your_username>/mocks/mock6/problem4
+
+5.	Problem Statement
+orders & order_items data are present in /user/<your_username>/data/retail_db
+orders 
+order_id, order_date, order_customer_id, order_status
+order_items 
+order_item_id, order_item_order_id, order_item_product_id, order_item_quantity, order_item_subtotal, order_item_product_price
+
+
+1. Now fetch selected columns from joined data Orderld, Order date and amount collected on each order and save as json to /user/<your_username>/mocks/mock6/problem5/sol1
+2. Calculate total orders placed for each date, and produced the output sorted by date and save as text file. Fields delimited by ‘,’ in snappy compressed format to /user/<your_username>/mocks/mock6/problem5/sol2
+
+6.	Problem Statement
+Accomplish the following from order_items data present in /user/<your_username>/data/retail_db
+order_items 
+order_item_id, order_item_order_id, order_item_product_id, order_item_quantity, order_item_subtotal, order_item_product_price 
+
+Get the total, maximum, minimum & average revenue for each order_id in this table.
+Save data with columns 
+order_id, total_rev, max_rev, min_rev, avg_rev 
+to json format using gzip compression to /user/<your_username>/mocks/mock6/problem6
+
+7.	Problem Statement
+From orders data present in /user/<your_username>/data/retail_db
+orders 
+order_id, order_date, order_customer_id, order_status
+
+Calculate the number of orders for each status. Save as text file using gzip compression, 
+order_status | num_of_orders
+to /user/<your_username>/mocks/mock6/problem7
+
+8.	Problem Statement
+From orders & order_items data present in /user/<your_username>/data/retail_db
+orders 
+order_id, order_date, order_customer_id, order_status
+
+order_items 
+order_item_id, order_item_order_id, order_item_product_id, order_item_quantity, order_item_subtotal, order_item_product_price
+
+1. Calculate total revenue per day and per order and save as orc to /user/<your_username>/mocks/mock6/problem8/sol1
+2. Calculate total and average revenue for each date and save as avro data to 
+/user/<your_username>/mocks/mock6/problem8/sol2
+
+Avro dependency details: groupId -> com.databricks, artifactId -> spark-avro_2.10, version -> 2.0.1
+
+9.	Problem Statement
+From orders & order_items data present in /user/<your_username>/data/retail_db
+orders 
+order_id, order_date, order_customer_id, order_status
+order_items 
+order_item_id, order_item_order_id, order_item_product_id, order_item_quantity, order_item_subtotal, order_item_product_price
+
+1. Calculate total revenue per day and per customer and save as json snappy compressed to /user/<your_username>/mocks/mock6/problem9/sol1
+2. Get the maximum revenue generating order per customer and save as text file ‘|’ delimited using gzip compression in /user/<your_username>/mocks/mock6/problem9/sol2
+
+10.	Problem Statement
+From products data present in /user/<your_username>/data/retail_db
+products:
+product_id | product_category_id | product_name | product_description | product_price | product_image
+Please use filter(lambda p: p.split(',')[4] != '') for products to filter inconsistent data.
+
+Get the top 10 priced products sorted in descending order of price and natural order of product_id.
+Save data to /user/<your_username>/mocks/mock6/problem10 as avro file without using compression.

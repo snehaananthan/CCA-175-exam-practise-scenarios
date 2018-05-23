@@ -1,0 +1,129 @@
+﻿1.	Problem Statement
+host=ms.itversity.com
+user=retail_user 
+password=itversity
+database=retail_export
+Import products_replica table from MYSQL into hdfs such that :
+•	fields are separated by a ‘*’ and lines are separated by ‘\n’. 
+•	Null values are represented as -1000 for numbers and “NA” for strings. 
+•	Only records with product id less than or equal to 1111 should be imported and use 2 mappers for importing. 
+•	The destination file should be stored as a text file to directory  /user/<your_user_name>/mocks/mock2/problem1/products-text-part1.
+Import products_replica table from MYSQL into hdfs such that:
+•	fields are separated by a ‘*’ and lines are separated by ‘\n’. 
+•	Null values are represented as -1000 for numbers and “NA” for strings. 
+•	Only records with product id greater than 1111 should be imported and use 5 mappers for importing. 
+•	The destination file should be stored as a text file to directory  /user/<your_user_name>/mocks/mock2/problem1/products-text-part2.
+Merge data available in /user/<your_user_name>/mocks/mock2/problem1/products-text-part1 and /user/<your_user_name>/mocks/mock2/problem1/products-text-part2 to produce a new set of files in /user/<your_user_name>/mocks/mock2/problem1/products-text-both-parts.
+
+2.	Problem Statement
+You have been given mysql DB with following details.
+host=nn01.itversity.com
+user=retail_dba 
+password=itversity 
+database=retail_db
+•	Import all the tables as avro files in /user/<your_username>/warehouse/retail_cca175.db 
+•	Import departments table as a text file in /user/<your_username>/mocks/mock2/problem2
+
+3.	Problem Statement
+host=nn01.itversity.com
+user=retail_dba 
+password=itversity
+database=retail_db 
+Compression: snappy 
+
+Please accomplish following. 
+•	Import entire database such that it can be used as a hive tables, it must be created in <your_username>_retail_db_txt schema. 
+•	Also make sure each tables file is partitioned in 3 files 
+•	Store all the java files in a directory called java to evaluate the further
+
+4.	Problem Statement
+•	All tables data in hdfs:   /user/<your_username>/data/retail_db 
+order_items: 
+order_item_id | order_item_order_id | order_item_product_id | order_item_quantity | order_item_subtotal | order_item_product_price
+
+orders:
+order_id | order_date | order_customer_id | order_status
+
+•	O/P columns: Order_Date , Order_status, total_orders, total_amount. 
+•	please find total orders and total amount per status per day. 
+•	The result should be sorted by order date in descending, order status in ascending and total amount in descending and total orders in ascending
+•	Store the result 
+o	as parquet file into hdfs using gzip compression to /user/<your_username>/mocks/mock2/problem4/parquet-gzip
+o	as parquet file into hdfs using snappy compression to /user/<your_username>/mocks/mock2/problem4/parquet-snappy
+o	as CSV file into hdfs using No compression to /user/<your_username>/mocks/mock2/problem4/csv
+
+5.	Problem Statement
+•	Products table data in hdfs:   /user/<your_username>/data/retail_db 
+products:
+product_id | product_category_id | product_name | product_description | product_price | product_image
+Please use filter(lambda p: p.split(',')[4] != '') for products to filter inconsistent data.
+
+•	Sort the resultant dataset by category id
+	filter such that your RDD/DF has products whose price is lesser than 100 USD
+	Find the following under each category:
+o	highest priced product_name (with the least product_id value) 
+o	lowest priced product_name (with the least product_id value)
+	Also find the total products, average price of the products under each category
+	Avro dependency details: groupId -> com.databricks, artifactId -> spark-avro_2.10, version -> 2.0.1
+Store the result in avro file using snappy compression in /user/<your_username>/mocks/mock2/problem5
+
+6.	Problem Statement
+host=nn01.itversity.com
+user=retail_dba 
+password=itversity
+database=retail_db
+Avro dependency details: groupId -> com.databricks, artifactId -> spark-avro_2.10, version -> 2.0.1
+
+Import orders table from mysql  into hdfs to the destination /user/<your_username>/mocks/mock2/problem6/avro. File should be stored as avro file.
+•	save the avro data to hdfs using snappy compression as parquet file at /user/<your_username>/mocks/mock2/problem6/parquet-snappy-compress
+•	save the avro data to hdfs using gzip compression as text file (‘ ’ space-delimited) at /user/<your_username>/mocks/mock2/problem6/text-gzip-compress
+•	save the avro data to hdfs using no compression as sequence file at /user/<your_username>/mocks/mock2/problem6/sequence
+•	save the avro data to hdfs using snappy compression as text file (‘,’ comma-delimited) at /user/<your_username>/mocks/mock2/problem6/text-snappy-compress
+7.	Problem Statement
+•	All tables data in hdfs:   /user/<your_username>/data/retail_db 
+categories: 
+category_id | category_department_id | category_name 
+
+departments:
+department_id | department_name
+
+products:
+product_id | product_category_id | product_name | product_description | product_price | product_image
+Please use filter(lambda p: p.split(',')[4] != '') for products to filter inconsistent data.
+
+•	Rank product details within department by price and order by department_name ascending and rank descending with only products less than $100.00
+•	Store the result in new meta store table with columns within hive in <your_username>_retail_db_txt.mock2_problem7
+
+8.	Problem Statement
+•	All tables data in hdfs:   /user/<your_username>/data/retail_db 
+order_items: 
+order_item_id | order_item_order_id | order_item_product_id | order_item_quantity | order_item_subtotal | order_item_product_price
+
+orders:
+order_id | order_date | order_customer_id | order_status
+
+customers:
+customer_id | customer_fname | customer_lname | customer_email | customer_password | customer_street | customer_city | customer_state | customer_zipcode
+
+•	find top 10 customer details with most unique product purchases. if more than one customer has the same number of product purchases then the customer with the lowest customer_id will take precedence with only product price less than $100.00
+•	Store the result in new meta store table within hive <your_username>_retail_db_txt.mock2_problem8
+
+9.	Problem Statement
+host=nn01.itversity.com
+user=retail_dba 
+password=itversity
+database=retail_db
+•	Import orders table from mysql as text file to the destination /user/<your_username>/mocks/mock2/problem9/text. Fields should be terminated by a tab character (“\t”) character and lines should be terminated by new line character (“\n”).
+Avro dependency details: groupId -> com.databricks, artifactId -> spark-avro_2.10, version -> 2.0.1
+
+Transform/Convert data-files at /user/<your_username>/mocks/mock2/problem6/parquet-snappy-compress and store the converted file at the following locations and file formats
+•	save the data to hdfs using no compression as parquet file at /user/<your_username>/mocks/mock2/problem9/parquet-no-compress
+•	save the data to hdfs using snappy compression as avro file at /user/<your_username>/mocks/mock2/problem9/avro-snappy
+
+10.	 Problem Statement 
+Transform/Convert data-files at /user/<your_username>/mocks/mock2/problem9/avro-snappy and store the converted file at the following locations and file formats
+•	save the data to hdfs using no compression as json file at /user/<your_username>/mocks/mock2/problem10/json-no-compress
+•	save the data to hdfs using gzip compression as json file at /user/<your_username>/mocks/mock2/problem10/json-gzip
+Transform/Convert data-files at  /user/<your_username>/mocks/mock2/problem10/json-gzip and store the converted file at the following locations and file formats
+•	save the data to as comma separated text using gzip compression at   /user/<your_username>/mocks/mock2/problem10/csv-gzip
+Using spark access data at /user/<your_username>/mocks/mock2/problem6/sequence and stored it back to hdfs using no compression as ORC file to HDFS to destination at   /user/<your_username>/mocks/mock2/problem10/orc
