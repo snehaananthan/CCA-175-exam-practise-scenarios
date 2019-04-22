@@ -1,0 +1,11 @@
+sqoop import --connect 'jdbc:mysql://ms.itversity.com:3306/retail_export' \
+--username=retail_user \
+--password=itversity \
+-m 1 \
+--table 'departments_snehaananthan' \
+--enclosed-by "\'" \
+--fields-terminated-by '~' \
+--lines-terminated-by ':' \
+--escaped-by '\\' \
+--target-dir '/user/snehaananthan/mocks/mock7/departments_enclosedby' \
+--outdir 'java'
